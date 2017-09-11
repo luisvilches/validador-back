@@ -29,7 +29,14 @@ app.post('/comments',body,(req,res) => {
 		url = "http://" + req.body.url;
 	}
 
-	request(url, (err,response,body) => {
+	var auth = "Basic " + new Buffer(req.body.user + ":" + req.body.pass).toString("base64");
+
+	request(url, {
+		headers : {
+            "Authorization" : auth
+        }
+	},(err,response,body) => {
+		console.log(body)
 		if (err){
 			if (err.code === "ENOTFOUND"){
 				res.status(500).json({message:"Dominio ingresado no existe"});
@@ -42,6 +49,7 @@ app.post('/comments',body,(req,res) => {
 			let position = 0;	
 
 			cadena.forEach((item,index) => {
+				console.log(item)
 				position = index;
 				if(item.indexOf("<!--") > -1){
 					errores.push({state:"error",line:index,item:String(item)});
@@ -54,7 +62,7 @@ app.post('/comments',body,(req,res) => {
 		}		
 	});
 });
-
+/*
 app.post('/css',body,(req,res) => {
 	var i = req.body.url.split('://');
 	var url;
@@ -67,7 +75,13 @@ app.post('/css',body,(req,res) => {
 		url = "http://" + req.body.url;
 	}
 
-	css.validate(url, function(err, result) {
+	var auth = "Basic " + new Buffer(req.body.user + ":" + req.body.pass).toString("base64");
+
+	css.validate(url,{
+		headers : {
+            "Authorization" : auth
+        }
+	}, function(err, result) {
 
 		if(err) {
 		    console.error(err);
@@ -90,10 +104,12 @@ app.post('/html',body,(req,res) => {
 		url = "http://" + req.body.url;
 	}
 
+	var auth = "Basic " + new Buffer(req.body.user + ":" + req.body.pass).toString("base64");
+
 	validate(url).then(result => {
 	  res.status(200).json({message:"Success",data:result});
 	});
-});
+});*/
 
 app.listen(puerto,err => {
 	if(err) throw err;
