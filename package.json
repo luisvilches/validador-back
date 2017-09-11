@@ -1,0 +1,21 @@
+{
+  "name": "validator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect-multiparty": "^2.0.0",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "google-translate-api": "^2.3.0",
+    "html5-validator": "^1.0.6",
+    "request": "^2.81.0",
+    "w3c-css": "^2.0.0"
+  }
+}
