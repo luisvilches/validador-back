@@ -8,7 +8,14 @@ const css = require('w3c-css');
 const translate = require('google-translate-api');
 const validate = require('html5-validator')
 
+const puerto = process.env.PORT || 5000;
+
 app.use(cors());
+
+
+app.get('/',(req,res) => {
+	res.status(200).json({message:"Hello World!!"});
+});
 
 app.post('/comments',body,(req,res) => {
 	var i = req.body.url.split('://');
@@ -88,7 +95,7 @@ app.post('/html',body,(req,res) => {
 	});
 });
 
-app.listen(5000,err => {
+app.listen(puerto,err => {
 	if(err) throw err;
 	console.log('running in port 5000');
 });
