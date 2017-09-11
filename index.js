@@ -28,8 +28,11 @@ app.post('/comments',body,(req,res) => {
 	} else {
 		url = "http://" + req.body.url;
 	}
+	let admin = 's4ntander';
+	let pass = 'ec0000';
 
-	var auth = "Basic " + new Buffer(req.body.user + ":" + req.body.pass).toString("base64");
+	//var auth = "Basic " + new Buffer(req.body.user + ":" + req.body.pass).toString("base64");
+	var auth = "Basic " + new Buffer(admin + ":" + pass).toString("base64");
 
 	request(url, {
 		headers : {
